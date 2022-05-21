@@ -16,5 +16,5 @@ X_gold = np.loadtxt("../test_complete.txt")
 K = 3
 
 X_pred = knn.fill_matrix(X, K)
-# print(X_pred)
+print(X_pred)
 print(common.rmse(X_gold, X_pred))

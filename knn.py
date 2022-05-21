@@ -35,12 +35,13 @@ def fill_matrix(X: np.ndarray, K: int) -> np.ndarray:
         indZero = np.argwhere(X[u] == 0).reshape(-1)
         for i in indZero:
             mask = X[:, i] != 0
-            model = train_model(X[mask, :], K)
+            X_mask = X[mask, :]
+            model = train_model(X_mask, K)
             sim, indexes = model.kneighbors([X[u]], n_neighbors=K)
 
             sim = np.reshape(sim, -1)
             indexes = np.reshape(indexes, -1)
 
-            X_pred[u, i] = (sim * X[indexes, i]).sum() / sim.sum()
+            X_pred[u, i] = (sim * X_mask[indexes, i]).sum() / sim.sum()
 
     return X_pred
