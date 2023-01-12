@@ -36,6 +36,7 @@ def fill_matrix(X: np.ndarray, K: int) -> np.ndarray:
         for i in indZero:
             mask = X[:, i] != 0
             X_mask = X[mask, :]
+
             model = train_model(X_mask, K)
             sim, indexes = model.kneighbors([X[u]], n_neighbors=K)
 
